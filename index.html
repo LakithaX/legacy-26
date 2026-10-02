@@ -1015,9 +1015,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.4s ease;
   }
   .tl-item.visible {
     opacity: 1;
@@ -1141,20 +1141,16 @@
 
   /* ---------- SCROLL ANIMATION CLASSES ---------- */
   .reveal-up {
-    opacity: 0;
-    transform: translateY(60px);
+    opacity: 1;
   }
   .reveal-left {
-    opacity: 0;
-    transform: translateX(-60px);
+    opacity: 1;
   }
   .reveal-right {
-    opacity: 0;
-    transform: translateX(60px);
+    opacity: 1;
   }
   .reveal-scale {
-    opacity: 0;
-    transform: scale(0.85);
+    opacity: 1;
   }
   .text-split-char {
     display: inline-block;
@@ -2038,6 +2034,9 @@
       filtered.forEach(role => {
         const card = document.createElement('div');
         card.className = `role-card ${role.id === 'ocp' ? 'ocp-card' : ''}`;
+        card.style.opacity = '1';
+        card.style.visibility = 'visible';
+        card.style.transform = 'none';
 
         card.innerHTML = `
           <div>
@@ -2344,71 +2343,53 @@
 
     // Generic reveal-up elements
     gsap.utils.toArray('.reveal-up').forEach((el, i) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 70 },
-        { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
-          delay: i * 0.05
-        }
-      );
+      gsap.from(el, {
+        opacity: 0, y: 50, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 92%', once: true },
+        delay: i * 0.04,
+        clearProps: 'opacity,transform'
+      });
     });
 
     // Reveal-left (from left)
     gsap.utils.toArray('.reveal-left').forEach(el => {
-      gsap.fromTo(el,
-        { opacity: 0, x: -80 },
-        { opacity: 1, x: 0, duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
-        }
-      );
+      gsap.from(el, {
+        opacity: 0, x: -60, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+        clearProps: 'opacity,transform'
+      });
     });
 
     // Reveal-right (from right)
     gsap.utils.toArray('.reveal-right').forEach(el => {
-      gsap.fromTo(el,
-        { opacity: 0, x: 80 },
-        { opacity: 1, x: 0, duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
-        }
-      );
+      gsap.from(el, {
+        opacity: 0, x: 60, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+        clearProps: 'opacity,transform'
+      });
     });
 
     // Reveal-scale (scale up)
     gsap.utils.toArray('.reveal-scale').forEach(el => {
-      gsap.fromTo(el,
-        { opacity: 0, scale: 0.8 },
-        { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.6)',
-          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
-        }
-      );
+      gsap.from(el, {
+        opacity: 0, scale: 0.9, duration: 0.8, ease: 'back.out(1.4)',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+        clearProps: 'opacity,transform'
+      });
     });
 
     // Stagger about-cards
-    gsap.fromTo('.about-card',
-      { opacity: 0, y: 60, rotateX: 15 },
-      { opacity: 1, y: 0, rotateX: 0, duration: 0.8, stagger: 0.18, ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-grid', start: 'top 80%', toggleActions: 'play none none none' }
-      }
-    );
+    gsap.from('.about-card', {
+      opacity: 0, y: 50, duration: 0.8, stagger: 0.15, ease: 'power3.out',
+      scrollTrigger: { trigger: '.about-grid', start: 'top 88%', once: true },
+      clearProps: 'opacity,transform'
+    });
 
     // Stagger em-cards from bottom
-    gsap.fromTo('.em-card',
-      { opacity: 0, y: 80, scale: 0.9 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.85, stagger: 0.2, ease: 'power3.out',
-        scrollTrigger: { trigger: '.em-grid', start: 'top 80%', toggleActions: 'play none none none' }
-      }
-    );
-
-    // Stagger role-cards with alternating direction
-    ScrollTrigger.create({
-      trigger: '#rolesGrid',
-      start: 'top 85%',
-      onEnter: () => {
-        gsap.fromTo('.role-card',
-          { opacity: 0, y: 60 },
-          { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power2.out' }
-        );
-      }
+    gsap.from('.em-card', {
+      opacity: 0, y: 60, scale: 0.94, duration: 0.8, stagger: 0.15, ease: 'power3.out',
+      scrollTrigger: { trigger: '.em-grid', start: 'top 88%', once: true },
+      clearProps: 'opacity,transform'
     });
 
     // Hero headline dramatic split-word reveal on load
