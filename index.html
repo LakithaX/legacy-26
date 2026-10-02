@@ -1,0 +1,2632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legacy '26 | AIESEC in SLIIT — Annual Awards Night OC Application</title>
+<link rel="icon" type="image/png" href="Images/legacy_logo.png">
+<link rel="apple-touch-icon" href="Images/legacy_logo.png">
+<meta property="og:title" content="Legacy '26 | AIESEC in SLIIT — Annual Awards Night">
+<meta property="og:description" content="Join the Organizing Committee of Legacy '26, the premier Annual Awards Night organized by AIESEC in SLIIT. Step into the spotlight!">
+<meta property="og:image" content="Images/legacy_logo.png">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+<!-- GSAP & ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Lenis buttery smooth scroll -->
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+<style>
+  :root {
+    --bg-body: #070709;
+    --bg-card: rgba(18, 18, 24, 0.75);
+    --bg-card-hover: rgba(28, 28, 38, 0.9);
+    --gold-100: #FFFDF0;
+    --gold-300: #FFE58F;
+    --gold-400: #FFD700;
+    --gold-500: #D4AF37;
+    --gold-600: #AA820A;
+    --gold-glow: rgba(255, 215, 0, 0.45);
+    --crimson: #800020;
+    --crimson-light: #B22222;
+    --text-main: #F7F7FA;
+    --text-sub: #A0A5B5;
+    --border-line: rgba(212, 175, 55, 0.25);
+    --border-glow: rgba(255, 215, 0, 0.6);
+    --shadow-gala: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.15);
+    --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 50px rgba(255, 215, 0, 0.35);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-full: 9999px;
+    --ff-heading: 'Cinzel', serif;
+    --ff-display: 'Syne', sans-serif;
+    --ff-body: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  body.cyber-mode {
+    --bg-body: #030814;
+    --bg-card: rgba(8, 20, 40, 0.8);
+    --gold-400: #00F0FF;
+    --gold-500: #0099FF;
+    --gold-glow: rgba(0, 240, 255, 0.5);
+    --crimson: #7000FF;
+    --border-line: rgba(0, 240, 255, 0.3);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--ff-body);
+    color: var(--text-main);
+    background: var(--bg-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background 0.6s ease, color 0.6s ease;
+  }
+
+  /* Custom Gold Dust Spotlight & Cursor */
+  .cursor-follower {
+    position: fixed;
+    top: 0; left: 0;
+    width: 32px; height: 32px;
+    border: 1.5px solid var(--gold-400);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, width 0.25s ease, height 0.25s ease, border-color 0.25s ease;
+    box-shadow: 0 0 15px var(--gold-glow);
+  }
+  .cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 6px; height: 6px;
+    background: var(--gold-400);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px var(--gold-400);
+  }
+
+  /* Spotlight Follower */
+  .spotlight-beam {
+    position: fixed;
+    top: 0; left: 0;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out;
+  }
+
+  /* Starfall Canvas */
+  #starfield {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.85;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Typography */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--ff-body);
+    font-weight: 800;
+    font-size: 12.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-400);
+    margin-bottom: 16px;
+    background: rgba(255, 215, 0, 0.08);
+    padding: 6px 18px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-line);
+    backdrop-filter: blur(10px);
+  }
+  .eyebrow::before {
+    content: "★";
+    color: var(--gold-400);
+    font-size: 14px;
+    animation: starPulse 2s infinite alternate;
+  }
+  @keyframes starPulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.4); opacity: 1; filter: drop-shadow(0 0 8px var(--gold-400)); }
+  }
+
+  h1, h2, h3 {
+    font-family: var(--ff-heading);
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+  }
+
+  .gold-text {
+    background: linear-gradient(135deg, #FFFDF0 0%, #FFD700 45%, #D4AF37 75%, #FFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+  }
+
+  .section-title {
+    font-size: clamp(34px, 4.8vw, 54px);
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+  .section-sub {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 60px;
+    color: var(--text-sub);
+    font-size: 17px;
+  }
+  .section {
+    padding: 110px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- INTRO RED CARPET CURTAIN ---------- */
+  .intro-curtain {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #1a0208 0%, #070709 100%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+  .curtain-logo {
+    width: 140px;
+    height: auto;
+    filter: drop-shadow(0 0 35px var(--gold-glow));
+    animation: trophyFloat 3s ease-in-out infinite;
+  }
+  @keyframes trophyFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .curtain-title {
+    font-family: var(--ff-heading);
+    font-size: 28px;
+    letter-spacing: 0.25em;
+    color: var(--gold-400);
+    text-shadow: 0 0 20px var(--gold-glow);
+  }
+
+  /* ---------- NAVIGATION ---------- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 0;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background: rgba(7, 7, 9, 0.6);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+  }
+  .nav.scrolled {
+    padding: 14px 0;
+    background: rgba(7, 7, 9, 0.92);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    border-bottom-color: var(--border-line);
+  }
+  .nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+  .nav-brand img {
+    height: 44px; width: auto;
+    filter: drop-shadow(0 0 12px var(--gold-glow));
+  }
+  .nav-brand-text {
+    font-family: var(--ff-heading);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--gold-400);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(18, 18, 24, 0.7);
+    border: 1px solid var(--border-line);
+    border-radius: var(--radius-full);
+    padding: 6px;
+    backdrop-filter: blur(12px);
+  }
+  .nav-links a {
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-sub);
+    transition: all 0.3s ease;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    color: #000;
+    background: var(--gold-400);
+    box-shadow: 0 0 20px var(--gold-glow);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .icon-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-line);
+    color: var(--gold-400);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .icon-btn:hover {
+    transform: scale(1.1) rotate(12deg);
+    border-color: var(--gold-400);
+    box-shadow: 0 0 20px var(--gold-glow);
+  }
+
+  .btn-gold {
+    background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
+    color: #000;
+    font-family: var(--ff-body);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 13px 28px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all 0.35s ease;
+    box-shadow: 0 4px 25px var(--gold-glow);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-gold:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 35px var(--gold-glow);
+    background: linear-gradient(135deg, #FFF0B3 0%, #FFD700 100%);
+  }
+
+  /* ---------- HERO SECTION ---------- */
+  .hero {
+    min-height: 100vh;
+    padding-top: 150px;
+    padding-bottom: 80px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 50px;
+    align-items: center;
+  }
+  .hero-headline {
+    font-size: clamp(44px, 5.8vw, 76px);
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .hero-desc {
+    font-size: 18.5px;
+    color: var(--text-sub);
+    margin-bottom: 40px;
+    max-width: 600px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 44px;
+  }
+  .btn-outline-gold {
+    background: rgba(18, 18, 24, 0.8);
+    border: 2px solid var(--gold-500);
+    color: var(--gold-300);
+    font-family: var(--ff-body);
+    font-weight: 800;
+    font-size: 13.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 13px 28px;
+    border-radius: var(--radius-full);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-outline-gold:hover {
+    background: var(--gold-400);
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px var(--gold-glow);
+  }
+
+  /* Countdown Widget */
+  .gala-countdown {
+    display: flex;
+    gap: 18px;
+    background: rgba(18, 18, 24, 0.85);
+    border: 1px solid var(--border-line);
+    padding: 18px 28px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-gala);
+    width: fit-content;
+    backdrop-filter: blur(16px);
+  }
+  .cd-unit { text-align: center; }
+  .cd-val {
+    font-family: var(--ff-heading);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--gold-400);
+    line-height: 1;
+    text-shadow: 0 0 15px var(--gold-glow);
+  }
+  .cd-lbl {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--text-sub);
+    letter-spacing: 0.12em;
+    margin-top: 4px;
+  }
+
+  /* 3D Mind-Bending Trophy Showcase */
+  .trophy-stage {
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .trophy-card-3d {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* Glow halo behind trophy */
+  .trophy-stage::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: haloBreath 4s ease-in-out infinite;
+  }
+  @keyframes haloBreath {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  }
+
+  /* Shadow puddle below */
+  .trophy-stage::after {
+    content: "";
+    position: absolute;
+    bottom: 48px; left: 50%;
+    transform: translateX(-50%);
+    width: 160px; height: 24px;
+    background: radial-gradient(ellipse, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(8px);
+    animation: shadowPulse 4s ease-in-out infinite;
+  }
+  @keyframes shadowPulse {
+    0%, 100% { transform: translateX(-50%) scaleX(1); opacity: 0.7; }
+    50% { transform: translateX(-50%) scaleX(0.85); opacity: 0.4; }
+  }
+
+  /* The trophy card itself — now open/frameless */
+  .trophy-card-3d {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out;
+    position: relative;
+    z-index: 2;
+    animation: trophyFloat 4s ease-in-out infinite;
+  }
+  @keyframes trophyFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-18px); }
+  }
+  .trophy-card-3d::before { display: none; }
+
+  .trophy-inner {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .trophy-img {
+    width: 280px; height: auto;
+    filter: drop-shadow(0 24px 48px rgba(212, 175, 55, 0.5))
+            drop-shadow(0 4px 16px rgba(212, 175, 55, 0.25));
+    transition: filter 0.4s ease;
+  }
+  .trophy-card-3d:hover .trophy-img {
+    filter: drop-shadow(0 32px 60px rgba(212, 175, 55, 0.7))
+            drop-shadow(0 6px 20px rgba(212, 175, 55, 0.4));
+  }
+  .trophy-title {
+    font-family: var(--ff-heading);
+    font-size: 20px;
+    color: var(--gold-400);
+    margin-top: 18px;
+    letter-spacing: 0.12em;
+    text-align: center;
+    text-shadow: 0 0 20px var(--gold-glow);
+  }
+  .trophy-sub {
+    font-size: 11px;
+    color: var(--text-sub);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ---------- ABOUT SECTION ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+  .about-card {
+    background: rgba(14, 14, 20, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    border-radius: 20px;
+    padding: 40px 36px 36px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .about-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-500), var(--gold-300), var(--gold-500), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .about-card:hover::before { opacity: 1; }
+  .about-card::after {
+    content: "";
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .about-card:hover::after { opacity: 1; }
+  .about-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(212, 175, 55, 0.45);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.7), 0 0 40px rgba(212,175,55,0.12);
+  }
+  .card-num {
+    font-family: var(--ff-body);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    color: var(--gold-600);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .card-num::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(212, 175, 55, 0.2);
+  }
+  .about-icon {
+    width: 52px; height: 52px;
+    background: rgba(212, 175, 55, 0.09);
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+  }
+  .about-icon svg {
+    width: 24px; height: 24px;
+    stroke: var(--gold-400);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .about-card:hover .about-icon {
+    background: rgba(212, 175, 55, 0.18);
+    border-color: rgba(212, 175, 55, 0.5);
+    transform: rotate(-5deg) scale(1.1);
+  }
+  .about-card h3 {
+    font-family: var(--ff-heading);
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.3;
+    color: var(--text-main);
+  }
+  .about-card p {
+    color: var(--text-sub);
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+
+  /* ---------- EVENT MANAGERS SPOTLIGHT ---------- */
+  .em-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+  }
+  .em-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-line);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    text-align: center;
+    transition: all 0.4s ease;
+    box-shadow: var(--shadow-gala);
+    backdrop-filter: blur(16px);
+  }
+  .em-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold-400);
+    box-shadow: var(--shadow-hover);
+  }
+  .em-img {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border: 3px solid var(--gold-400);
+    box-shadow: 0 0 25px var(--gold-glow);
+    transition: transform 0.3s ease;
+  }
+  .em-card:hover .em-img {
+    transform: scale(1.06);
+  }
+  .em-name {
+    font-family: var(--ff-heading);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text-main);
+  }
+  .em-role {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gold-400);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  /* ---------- ROLES SECTION & FILTER ---------- */
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .filter-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-line);
+    color: var(--text-sub);
+    padding: 12px 24px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(12px);
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--gold-400);
+    color: #000;
+    border-color: var(--gold-400);
+    box-shadow: 0 0 20px var(--gold-glow);
+  }
+
+  #cursorTrailCanvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9997;
+  }
+
+  .roles-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 32px;
+  }
+  .role-card {
+    flex: 1 1 340px;
+    max-width: 380px;
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-line);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    backdrop-filter: blur(16px);
+  }
+  .role-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold-400);
+    box-shadow: var(--shadow-hover);
+  }
+  .role-card.ocp-card {
+    border: 2px solid var(--gold-400);
+    background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.15) 0%, rgba(18, 18, 24, 0.9) 80%);
+  }
+  .rc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .rc-badge {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 215, 0, 0.15);
+    color: var(--gold-400);
+    border: 1px solid var(--border-line);
+  }
+  .rc-openings {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-sub);
+    border: 1px solid var(--border-line);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+  }
+  .rc-title {
+    font-family: var(--ff-heading);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.25;
+    color: var(--text-main);
+  }
+  .rc-focus {
+    font-size: 14px;
+    color: var(--gold-300);
+    margin-bottom: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .rc-btn {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid var(--border-line);
+    color: var(--gold-400);
+    text-align: center;
+    padding: 14px 24px;
+    border-radius: var(--radius-full);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .role-card:hover .rc-btn {
+    background: var(--gold-400);
+    color: #000;
+    border-color: var(--gold-400);
+    box-shadow: 0 0 20px var(--gold-glow);
+  }
+
+  /* ---------- MODAL & DRAWER ---------- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-box {
+    background: #0e0e14;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-line);
+    width: 100%;
+    max-width: 800px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 44px;
+    position: relative;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.95);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .modal-overlay.open .modal-box {
+    transform: scale(1) translateY(0);
+  }
+  .modal-close {
+    position: absolute;
+    top: 28px; right: 28px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid var(--border-line);
+    color: var(--gold-400);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .modal-close:hover {
+    background: var(--crimson-light);
+    color: #fff;
+    border-color: var(--crimson-light);
+  }
+  .modal-title {
+    font-family: var(--ff-heading);
+    font-size: 32px;
+    color: var(--gold-400);
+    margin-bottom: 8px;
+  }
+  .modal-openings-tag {
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.15);
+    color: var(--gold-300);
+    padding: 4px 16px;
+    border-radius: var(--radius-full);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    border: 1px solid var(--border-line);
+  }
+  .modal-sec-title {
+    font-family: var(--ff-heading);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 28px 0 14px;
+    color: var(--gold-400);
+    border-bottom: 1px solid var(--border-line);
+    padding-bottom: 8px;
+  }
+  .modal-list {
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  .modal-list li {
+    font-size: 15px;
+    color: var(--text-sub);
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .chip {
+    background: rgba(255, 215, 0, 0.12);
+    border: 1px solid var(--border-line);
+    color: var(--text-main);
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .modal-apply-btn {
+    width: 100%;
+    margin-top: 36px;
+    background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
+    color: #000;
+    font-family: var(--ff-body);
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 18px;
+    border-radius: var(--radius-full);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 30px var(--gold-glow);
+    transition: all 0.35s ease;
+  }
+  .modal-apply-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px var(--gold-glow);
+    background: linear-gradient(135deg, #FFF0B3 0%, #FFD700 100%);
+  }
+
+  /* ---------- QUIZ STEP MODAL ---------- */
+  .quiz-option {
+    background: rgba(18, 18, 24, 0.9);
+    border: 1px solid var(--border-line);
+    padding: 18px 24px;
+    border-radius: var(--radius-md);
+    margin-bottom: 14px;
+    font-weight: 700;
+    font-size: 15.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .quiz-option:hover {
+    border-color: var(--gold-400);
+    background: rgba(255, 215, 0, 0.15);
+    transform: translateX(8px);
+    box-shadow: 0 0 20px var(--gold-glow);
+  }
+
+  /* ---------- TIMELINE SECTION — Premium Numbered Design ---------- */
+  .timeline-section {
+    padding: 100px 0 110px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tl-track-wrap {
+    position: relative;
+    margin-top: 64px;
+    padding-bottom: 8px;
+  }
+
+  /* Central horizontal rail */
+  .tl-rail {
+    position: absolute;
+    top: 40px;
+    left: 0; right: 0;
+    height: 1px;
+    background: rgba(212, 175, 55, 0.18);
+    z-index: 0;
+  }
+  .tl-rail-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--gold-600), var(--gold-400));
+    box-shadow: 0 0 12px var(--gold-glow);
+    transition: width 1.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* Items container */
+  .tl-items {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Each step */
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .tl-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Numbered circle node */
+  .tl-node {
+    position: relative;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: rgba(10, 10, 14, 0.95);
+    border: 1.5px solid rgba(212, 175, 55, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    flex-shrink: 0;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+    z-index: 2;
+  }
+  .tl-item:hover .tl-node {
+    transform: scale(1.08);
+    border-color: var(--gold-400);
+    box-shadow: 0 0 28px rgba(212, 175, 55, 0.3);
+  }
+  .tl-item.active-step .tl-node {
+    border-color: var(--gold-400);
+    box-shadow: 0 0 32px rgba(212, 175, 55, 0.45);
+    background: rgba(212, 175, 55, 0.08);
+  }
+
+  /* Animated ring for active */
+  .tl-node::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: ringPulse 2.4s ease-in-out infinite;
+  }
+  .tl-item.active-step .tl-node::before { opacity: 1; }
+  @keyframes ringPulse {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.15); opacity: 0; }
+  }
+
+  /* SVG icon inside node */
+  .tl-icon {
+    width: 22px; height: 22px;
+  }
+  .tl-icon svg {
+    width: 22px; height: 22px;
+    stroke: var(--gold-500);
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.3s ease;
+  }
+  .tl-item.active-step .tl-icon svg {
+    stroke: var(--gold-300);
+  }
+
+  /* Step number */
+  .tl-step-num {
+    font-family: var(--ff-body);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: var(--gold-600);
+    text-transform: uppercase;
+  }
+  .tl-item.active-step .tl-step-num { color: var(--gold-400); }
+
+  /* Content card below node */
+  .tl-body {
+    margin-top: 20px;
+    text-align: center;
+    padding: 0 8px;
+  }
+  .tl-label {
+    font-family: var(--ff-heading);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.35;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .tl-date {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--gold-500);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .tl-desc {
+    font-size: 12px;
+    color: var(--text-sub);
+    line-height: 1.6;
+    max-width: 120px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 860px) {
+    .tl-items {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .tl-rail { display: none; }
+    .tl-item { flex-direction: row; align-items: flex-start; gap: 20px; text-align: left; }
+    .tl-body { margin-top: 0; text-align: left; }
+    .tl-desc { margin: 0; }
+  }
+
+  /* ---------- SCROLL ANIMATION CLASSES ---------- */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  .text-split-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  /* ---------- FOOTER — Gala Edition ---------- */
+  footer {
+    background: #040406;
+    border-top: 1px solid var(--border-line);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .footer-glow-top {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-400), transparent);
+    box-shadow: 0 0 30px var(--gold-glow);
+  }
+  .footer-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 36px 28px 24px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-logo {
+    width: 52px; height: auto;
+    margin: 0 auto 14px;
+    filter: drop-shadow(0 0 10px var(--gold-glow));
+    transition: transform 0.4s ease;
+  }
+  .footer-logo:hover { transform: scale(1.1) rotate(5deg); }
+  .footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .footer-link-item {
+    font-family: var(--ff-heading);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--text-sub);
+    padding: 0 14px;
+    transition: color 0.25s ease;
+  }
+  .footer-link-item:hover { color: var(--gold-400); }
+  .footer-sep {
+    width: 1px; height: 14px;
+    background: var(--border-line);
+    display: inline-block;
+  }
+  .footer-about {
+    font-size: 12.5px;
+    color: var(--text-sub);
+    line-height: 1.75;
+    max-width: 580px;
+    margin: 0 auto 20px;
+  }
+  .footer-about span {
+    color: var(--gold-400);
+  }
+  .footer-divider {
+    width: 40px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-400), transparent);
+    margin: 0 auto 16px;
+  }
+  .footer-copy {
+    font-size: 11.5px;
+    color: rgba(160, 165, 181, 0.5);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-ctas { justify-content: center; }
+    .gala-countdown { margin: 0 auto; }
+    .nav-links { display: none; }
+    .tl-items { flex-wrap: wrap; gap: 36px; }
+    .tl-item { min-width: 120px; flex: none; }
+    .tl-rail { display: none; }
+  }
+
+  /* ===== MIND-BENDING SCROLL FX ===== */
+
+  /* Noise grain overlay */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.4;
+  }
+
+  /* Split text characters */
+  .char {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+  .char-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .char.revealed .char-inner { transform: translateY(0); }
+
+  /* Horizontal marquee track (stats / logos) */
+  .marquee-wrap {
+    overflow: hidden;
+    padding: 56px 0;
+    position: relative;
+    border-top: 1px solid var(--border-line);
+    border-bottom: 1px solid var(--border-line);
+    background: rgba(8, 8, 12, 0.6);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: marqueeScroll 22s linear infinite;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 48px;
+    white-space: nowrap;
+    border-right: 1px solid rgba(212, 175, 55, 0.15);
+  }
+  .marquee-item .mq-num {
+    font-family: var(--ff-heading);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold-400);
+    line-height: 1;
+  }
+  .marquee-item .mq-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-sub);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    max-width: 100px;
+    line-height: 1.3;
+  }
+  .mq-sep {
+    font-family: var(--ff-heading);
+    font-size: 28px;
+    color: var(--gold-600);
+    opacity: 0.4;
+    padding: 0 12px;
+  }
+
+  /* Clip-path section wipe overlay */
+  .section-wipe {
+    position: relative;
+    overflow: hidden;
+  }
+  .section-wipe::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--bg-body);
+    clip-path: inset(0 100% 0 0);
+    z-index: 5;
+    pointer-events: none;
+  }
+  .section-wipe.wiped::before {
+    clip-path: inset(0 0% 0 0);
+    transition: clip-path 0s;
+  }
+
+  /* Skew on scroll */
+  .skew-section {
+    will-change: transform;
+    transition: transform 0.08s linear;
+  }
+
+  /* Magnetic button aura */
+  .btn-magnetic {
+    position: relative;
+    transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Big number counter reveal */
+  .stat-counter {
+    font-family: var(--ff-heading);
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 700;
+    color: var(--gold-400);
+    line-height: 1;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  /* Scroll-velocity skew applied via JS */
+  .velocity-skew {
+    will-change: transform;
+  }
+</style>
+</head>
+
+<body>
+  <!-- Custom Spotlight Beam & Cursor -->
+  <div class="spotlight-beam" id="spotlight"></div>
+  <canvas id="cursorTrailCanvas"></canvas>
+  <div class="cursor-follower" id="cursorFollower"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Background Starfall Canvas -->
+  <canvas id="starfield"></canvas>
+
+  <!-- Intro Curtain -->
+  <div class="intro-curtain" id="introCurtain">
+    <img src="Images/legacy_logo.png" alt="Legacy Logo" class="curtain-logo">
+    <div class="curtain-title">LEGACY '26</div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <a href="#" class="nav-brand">
+        <img src="Images/legacy_logo.png" alt="Legacy Logo">
+        <span class="nav-brand-text">LEGACY '26</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#hero" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#roles">OC Roles</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="soundToggle" title="Toggle Sound FX">🔊</button>
+        <button class="icon-btn" id="cyberToggle" title="Toggle Cyber Glow Mode">⚡</button>
+        <a href="#roles" class="btn-gold">Apply Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="eyebrow">AIESEC IN SLIIT — ANNUAL AWARDS NIGHT</div>
+          <h1 class="hero-headline">Step into the Spotlight at <span class="gold-text">LEGACY '26</span></h1>
+          <p class="hero-desc">Join the Organizing Committee of the most prestigious Annual Awards Night of AIESEC in SLIIT. Lead execution, craft unforgettable moments, and leave your legacy.</p>
+
+          <div class="hero-ctas">
+            <button class="btn-outline-gold" id="openQuizBtn">✨ Role Match Quiz</button>
+            <a href="#roles" class="btn-gold">Explore All Openings</a>
+          </div>
+
+          <!-- Countdown -->
+          <div class="gala-countdown">
+            <div class="cd-unit">
+              <div class="cd-val" id="cdDays">06</div>
+              <div class="cd-lbl">Days</div>
+            </div>
+            <div class="cd-unit">
+              <div class="cd-val" id="cdHours">18</div>
+              <div class="cd-lbl">Hours</div>
+            </div>
+            <div class="cd-unit">
+              <div class="cd-val" id="cdMins">42</div>
+              <div class="cd-lbl">Mins</div>
+            </div>
+            <div class="cd-unit">
+              <div class="cd-val" id="cdSecs">15</div>
+              <div class="cd-lbl">Secs</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trophy-stage">
+          <div class="trophy-card-3d" id="trophyCard">
+            <div class="trophy-inner">
+              <img src="Images/trophy.png" alt="Legacy '26 Award Trophy" class="trophy-img">
+              <div class="trophy-title">LEGACY '26</div>
+              <div class="trophy-sub">Annual Awards Night</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ★ MARQUEE STATS BAND ★ -->
+  <div class="marquee-wrap" id="marqueeWrap">
+    <div class="marquee-track" id="marqueeTrack">
+      <!-- First set -->
+      <div class="marquee-item"><span class="mq-num">7</span><span class="mq-label">OC Roles Available</span></div>
+      <span class="mq-sep">✦</span>
+      <div class="marquee-item"><span class="mq-num">18+</span><span class="mq-label">OC Positions Open</span></div>
+      <span class="mq-sep">✦</span>
+      <div class="marquee-item"><span class="mq-num">1</span><span class="mq-label">Night of Excellence</span></div>
+      <span class="mq-sep">✦</span>
+      <div class="marquee-item"><span class="mq-num">26th</span><span class="mq-label">Legacy Edition</span></div>
+      <span class="mq-sep">✦</span>
+      <div class="marquee-item"><span class="mq-num">2026</span><span class="mq-label">Annual Awards Gala</span></div>
+      <span class="mq-sep">✦</span>
+      <div class="marquee-item"><span class="mq-num">∞</span><span class="mq-label">Skills You Will Gain</span></div>
+      <span class="mq-sep">✦</span>
+      <!-- Duplicate for seamless loop -->
+      <div class="marquee-item"><span class="mq-num">7</span><span class="mq-label">OC Roles Available</span></div>
+      <span class="mq-sep">✦</span>
+      <div class="marquee-item"><span class="mq-num">18+</span><span class="mq-label">OC Positions Open</span></div>
+      <span class="mq-sep">✦</span>
+      <div class="marquee-item"><span class="mq-num">1</span><span class="mq-label">Night of Excellence</span></div>
+      <span class="mq-sep">✦</span>
+      <div class="marquee-item"><span class="mq-num">26th</span><span class="mq-label">Legacy Edition</span></div>
+      <span class="mq-sep">✦</span>
+      <div class="marquee-item"><span class="mq-num">2026</span><span class="mq-label">Annual Awards Gala</span></div>
+      <span class="mq-sep">✦</span>
+      <div class="marquee-item"><span class="mq-num">∞</span><span class="mq-label">Skills You Will Gain</span></div>
+      <span class="mq-sep">✦</span>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="eyebrow" style="display: table; margin: 0 auto 16px;">Why Join Legacy '26</div>
+      <h2 class="section-title">The Grandest Gala Experience</h2>
+      <p class="section-sub">Be part of the visionary team crafting the most anticipated celebration of excellence.</p>
+
+      <div class="about-grid">
+
+        <!-- Card 01 — Awards Gala -->
+        <div class="about-card">
+          <div class="card-num">01</div>
+          <div class="about-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 21h8M12 17v4M17 3H7l1 8a4 4 0 0 0 8 0l1-8z"/>
+              <path d="M5 3H3a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4h.5M19 3h2a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4h-.5"/>
+            </svg>
+          </div>
+          <h3>Awards Gala Management</h3>
+          <p>Design awards flows, nominee announcements, and stage structures that honor top achievers in style.</p>
+        </div>
+
+        <!-- Card 02 — Corporate Negotiations -->
+        <div class="about-card">
+          <div class="card-num">02</div>
+          <div class="about-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="7" width="20" height="14" rx="2"/>
+              <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+              <line x1="12" y1="12" x2="12" y2="16"/>
+              <line x1="10" y1="14" x2="14" y2="14"/>
+            </svg>
+          </div>
+          <h3>Corporate Negotiations</h3>
+          <p>Pitch to major corporate partners, negotiate sponsorships, and secure cash & in-kind funding for the gala.</p>
+        </div>
+
+        <!-- Card 03 — Delegate & Event Magic -->
+        <div class="about-card">
+          <div class="card-num">03</div>
+          <div class="about-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M6 20v-2a6 6 0 0 1 12 0v2"/>
+              <path d="M19 8l1.5-1.5M21 12h1.5M19 16l1.5 1.5"/>
+            </svg>
+          </div>
+          <h3>Delegate & Event Magic</h3>
+          <p>Create unforgettable delegate experiences, red carpet atmosphere, and seamless technical production.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Managers Leadership Section -->
+  <section class="section" id="leadership" style="background: rgba(10, 10, 14, 0.6);">
+    <div class="container">
+      <div class="eyebrow" style="display: table; margin: 0 auto 16px;">Event Management</div>
+      <h2 class="section-title">Meet the Event Managers</h2>
+      <p class="section-sub">Guided by experienced leadership to deliver a flawless awards night.</p>
+
+      <div class="em-grid">
+        <div class="em-card">
+          <img src="Images/Dinidi_Senanayake.png" alt="Dinidi Senanayake" class="em-img">
+          <div class="em-name">Dinidi Senanayake</div>
+          <div class="em-role">Event Manager</div>
+          <p style="color: var(--text-sub); font-size: 14px;">Leading event strategy, delegate experience, and organizational standards.</p>
+        </div>
+        <div class="em-card">
+          <img src="Images/Minadi_Athukorala.png" alt="Minadi Athukorala" class="em-img">
+          <div class="em-name">Minadi Athukorala</div>
+          <div class="em-role">Event Manager</div>
+          <p style="color: var(--text-sub); font-size: 14px;">Overseeing operations, partnership deliverables, and conference flow.</p>
+        </div>
+        <div class="em-card">
+          <img src="Images/em_1.jpg" alt="Event Manager" class="em-img">
+          <div class="em-name">Legacy Leadership</div>
+          <div class="em-role">Organizing Committee Co-Chair</div>
+          <p style="color: var(--text-sub); font-size: 14px;">Directing cross-functional synergy, budget execution, and gala logistics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE SECTION -->
+  <section class="timeline-section" id="timeline">
+    <div class="container">
+      <div class="eyebrow reveal-up" style="display: table; margin: 0 auto 16px;">Application Roadmap</div>
+      <h2 class="section-title reveal-up">Recruitment Timeline</h2>
+      <p class="section-sub reveal-up">Five key milestones from application open to OC announcement. Mark your calendar.</p>
+
+      <div class="tl-track-wrap" id="tlTrackWrap">
+        <div class="tl-rail">
+          <div class="tl-rail-fill" id="tlRailFill"></div>
+        </div>
+
+        <div class="tl-items">
+
+          <!-- Step 1 — Applications Open -->
+          <div class="tl-item active-step" data-delay="0">
+            <div class="tl-node">
+              <div class="tl-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="9" y1="13" x2="15" y2="13"/>
+                  <line x1="9" y1="17" x2="15" y2="17"/>
+                </svg>
+              </div>
+              <span class="tl-step-num">01</span>
+            </div>
+            <div class="tl-body">
+              <div class="tl-date">Applications Open</div>
+              <div class="tl-label">OC Applications<br>Launch</div>
+              <div class="tl-desc">Submit your application and choose your preferred role</div>
+            </div>
+          </div>
+
+          <!-- Step 2 — OCP Deadline -->
+          <div class="tl-item" data-delay="150">
+            <div class="tl-node">
+              <div class="tl-icon">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <span class="tl-step-num">02</span>
+            </div>
+            <div class="tl-body">
+              <div class="tl-date">OCP Deadline</div>
+              <div class="tl-label">President Role<br>Closes</div>
+              <div class="tl-desc">Final deadline for OCP applications</div>
+            </div>
+          </div>
+
+          <!-- Step 3 — OCVP Deadline -->
+          <div class="tl-item" data-delay="300">
+            <div class="tl-node">
+              <div class="tl-icon">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                  <line x1="8" y1="14" x2="8" y2="14" stroke-width="2.5"/>
+                  <line x1="12" y1="14" x2="12" y2="14" stroke-width="2.5"/>
+                  <line x1="16" y1="14" x2="16" y2="14" stroke-width="2.5"/>
+                </svg>
+              </div>
+              <span class="tl-step-num">03</span>
+            </div>
+            <div class="tl-body">
+              <div class="tl-date">OCVP Deadline</div>
+              <div class="tl-label">All VP Roles<br>Close</div>
+              <div class="tl-desc">Final deadline for all OCVP applications</div>
+            </div>
+          </div>
+
+          <!-- Step 4 — Interviews -->
+          <div class="tl-item" data-delay="450">
+            <div class="tl-node">
+              <div class="tl-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <span class="tl-step-num">04</span>
+            </div>
+            <div class="tl-body">
+              <div class="tl-date">Interviews</div>
+              <div class="tl-label">Interview<br>Rounds</div>
+              <div class="tl-desc">Sessions with Event Managers and Executive Body</div>
+            </div>
+          </div>
+
+          <!-- Step 5 — OC Announcement -->
+          <div class="tl-item" data-delay="600">
+            <div class="tl-node">
+              <div class="tl-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8 21h8M12 17v4M17 3H7l1 8a4 4 0 0 0 8 0l1-8z"/>
+                  <path d="M5 3H3a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4h.5"/>
+                  <path d="M19 3h2a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4h-.5"/>
+                </svg>
+              </div>
+              <span class="tl-step-num">05</span>
+            </div>
+            <div class="tl-body">
+              <div class="tl-date">OC Announcement</div>
+              <div class="tl-label">Selected Team<br>Revealed</div>
+              <div class="tl-desc">Welcome to the Legacy '26 Organizing Committee</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roles Section -->
+  <section class="section" id="roles">
+    <div class="container">
+      <div class="eyebrow" style="display: table; margin: 0 auto 16px;">Open Positions</div>
+      <h2 class="section-title">Legacy '26 OC Roles & JDs</h2>
+      <p class="section-sub">Select a position below to view detailed requirements, key focus, KPIs, and learning points.</p>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All Roles</button>
+        <button class="filter-btn" data-filter="ocp">OCP</button>
+        <button class="filter-btn" data-filter="finance">Finance</button>
+        <button class="filter-btn" data-filter="pd">Partnership Dev</button>
+        <button class="filter-btn" data-filter="delegate">Delegate Exp</button>
+        <button class="filter-btn" data-filter="events">Events</button>
+        <button class="filter-btn" data-filter="logistics">Logistics</button>
+        <button class="filter-btn" data-filter="marketing">Marketing</button>
+      </div>
+
+      <div class="roles-grid" id="rolesGrid"></div>
+    </div>
+  </section>
+
+  <!-- Role Detail Modal Drawer -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close" id="modalClose">✕</button>
+      <h2 class="modal-title" id="modalTitle">Role Title</h2>
+      <span class="modal-openings-tag" id="modalOpenings">1 Position</span>
+
+      <div class="modal-sec-title">Key Focus</div>
+      <ul class="modal-list" id="modalFocus"></ul>
+
+      <div class="modal-sec-title">Responsibilities & Duties</div>
+      <ul class="modal-list" id="modalDuties"></ul>
+
+      <div class="modal-sec-title">Key Performance Indicators (KPIs)</div>
+      <ul class="modal-list" id="modalKpis"></ul>
+
+      <div class="modal-sec-title">Learning Points & Experience</div>
+      <div class="chip-row" id="modalOutcomes"></div>
+
+      <button class="modal-apply-btn" id="modalApplyBtn">Submit Application via Google Form</button>
+    </div>
+  </div>
+
+  <!-- Quiz Modal -->
+  <div class="modal-overlay" id="quizOverlay">
+    <div class="modal-box" style="max-width: 560px;">
+      <button class="modal-close" id="quizClose">✕</button>
+
+      <div class="quiz-step active" id="qStep1">
+        <h2 class="modal-title" style="font-size: 24px;">What is your primary passion?</h2>
+        <p style="color: var(--text-sub); margin-bottom: 24px;">Select what excites you most about Legacy '26:</p>
+        <div class="quiz-option" onclick="answerQuiz('Organizing Committee President (OCP)')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">OCP</strong> Leading the entire team & event vision</span> <span>➔</span></div>
+        <div class="quiz-option" onclick="answerQuiz('OCVP — Finance')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">FINANCE</strong> Budget execution & cash flow management</span> <span>➔</span></div>
+        <div class="quiz-option" onclick="answerQuiz('OCVP — Partnership Development')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">PD</strong> Corporate sponsorships & MOUs</span> <span>➔</span></div>
+        <div class="quiz-option" onclick="answerQuiz('OCVP — Delegate Experience')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">DELEGATE</strong> Delegate servicing & registrations</span> <span>➔</span></div>
+        <div class="quiz-option" onclick="answerQuiz('OCVP — Events')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">EVENTS</strong> Awards flow, nominee announcements & agenda</span> <span>➔</span></div>
+        <div class="quiz-option" onclick="answerQuiz('OCVP — Logistics')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">LOGISTICS</strong> Technical operations & venue management</span> <span>➔</span></div>
+        <div class="quiz-option" onclick="answerQuiz('OCVP — Marketing')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">MARKETING</strong> Creative campaigns & digital impact</span> <span>➔</span></div>
+      </div>
+
+      <div class="quiz-step" id="qResult" style="display: none; text-align: center; padding: 20px 0;">
+        <img src="Images/legacy_logo.png" alt="Legacy '26 Logo" style="width: 60px; height: auto; margin-bottom: 16px; filter: drop-shadow(0 0 16px var(--gold-glow));">
+        <h2 class="modal-title" style="font-size: 28px;">Your Legacy Role</h2>
+        <p style="color: var(--text-sub); margin-bottom: 20px;">Based on your selection, your perfect match is:</p>
+        <div id="quizResultRole" style="font-family: var(--ff-heading); font-size: 24px; font-weight: 700; color: var(--gold-400); margin-bottom: 28px;"></div>
+        <button class="modal-apply-btn" id="quizApplyBtn">Apply For This Role</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer — Gala Edition -->
+  <footer>
+    <div class="footer-glow-top"></div>
+    <div class="footer-inner reveal-up">
+      <img src="Images/legacy_logo.png" alt="Legacy '26 Logo" class="footer-logo">
+
+      <div class="footer-links">
+        <span class="footer-link-item">AIESEC</span>
+        <span class="footer-sep"></span>
+        <span class="footer-link-item">AIESEC in SLIIT</span>
+        <span class="footer-sep"></span>
+        <span class="footer-link-item">Legacy '26</span>
+      </div>
+
+      <p class="footer-about">
+        <span>AIESEC in SLIIT</span> is a local chapter of <span>AIESEC Sri Lanka</span>, a non-governmental not-for-profit organization. AIESEC is a <span>global youth-led organization</span> striving to achieve peace and fulfillment of humankind's potential by activating <span>leadership qualities</span> in youth through learning from practical experiences in challenging environments. Together with partner organizations, AIESEC facilitates a network of cross-cultural exchanges in the form of <span>volunteering experiences</span> and professional internships.
+      </p>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-copy">© 2026 Organized by AIESEC in SLIIT. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Code -->
+  <script>
+    const GOOGLE_FORM_URL = "https://forms.gle/JRiR3LsbcFC61b5A9";
+
+    // ---- LEGACY '26 ROLE DATA ----
+    const legacyRoles = [
+      {
+        id: "ocp",
+        category: "ocp",
+        title: "Organizing Committee President (OCP)",
+        openings: "Leadership Position",
+        keyFocus: [
+          "Preparing event budget & responsible for budget execution",
+          "Cash flow management of the event",
+          "Timeline management and overall OC tracking"
+        ],
+        duties: [
+          "Uphold team standards, manage and track the OC.",
+          "Lead regular team meetings and timeline management.",
+          "Work with event managers to achieve event objectives.",
+          "Guide the OC to fulfill PD and logistics requirements of the event.",
+          "Ensure on-time promotions and communication between delegates and OC.",
+          "Ensure sustainability of the event and conduct risk analysis.",
+          "Submit the OC and Event Report.",
+          "Ensure marketing materials are ready & calendar is booked the day before posting.",
+          "Ensure that the OCVPs have a fruitful OC experience."
+        ],
+        kpis: [
+          "# of Delegates",
+          "Sustainability of the event",
+          "% of Time Management for Deadlines",
+          "# of monetary & non-monetary raisings",
+          "# of partnerships",
+          "Zero complaints & feedbacks from delegates",
+          "# of membership re-applying for OCs & retaining"
+        ],
+        outcomes: [
+          "Event management skills",
+          "Team management skills",
+          "Finance management",
+          "Project progress tracking",
+          "Partnership management skills"
+        ]
+      },
+      {
+        id: "finance",
+        category: "finance",
+        title: "OCVP — Finance",
+        openings: "1 Position",
+        keyFocus: [
+          "Preparing event budget",
+          "Responsible for budget execution",
+          "Cash flow management of the event"
+        ],
+        duties: [
+          "Preparing event budget.",
+          "Collecting and documenting all supporting documents.",
+          "Responsible for budget execution.",
+          "Expenses and partnership tracking.",
+          "Ensure partnership delivery.",
+          "Preparing final finance report.",
+          "Cash flow management of the event.",
+          "Understanding and addressing synergy points with other positions."
+        ],
+        kpis: [
+          "Sustainability of the event",
+          "On-time partnership deposits",
+          "Successful audit review",
+          "Minimal deviation from the budget"
+        ],
+        outcomes: [
+          "Event management skills",
+          "Skill of using tools and trackers",
+          "Finance management of an event",
+          "Budgeting and reporting skills"
+        ]
+      },
+      {
+        id: "pd",
+        category: "pd",
+        title: "OCVP — Partnership Development",
+        openings: "4 Positions",
+        keyFocus: [
+          "Prepare PD plan and timeline",
+          "Negotiate deliverables with companies",
+          "Prepare MOUs and collect dues"
+        ],
+        duties: [
+          "Prepare the Partnership Development plan and timeline.",
+          "Prepare PD packages and proposals.",
+          "Research and analyze potential sectors and companies.",
+          "Guide the OC to execute PD plan according to the timeline.",
+          "Carry out negotiations with companies for final deliverables.",
+          "Prepare MOUs with the help of OCVP Finance and deliver AIESEC responsibilities.",
+          "Collect amounts due from partners after the event."
+        ],
+        kpis: [
+          "# of partners raised",
+          "Overall success of the event",
+          "Amount of PD raised",
+          "# of company meetings arranged"
+        ],
+        outcomes: [
+          "Corporate exposure",
+          "Market research knowledge",
+          "Professional & negotiation skills",
+          "Hands-on experience in sales",
+          "Partnership delivery skills"
+        ]
+      },
+      {
+        id: "delegate",
+        category: "delegate",
+        title: "OCVP — Delegate Experience",
+        openings: "3 Positions",
+        keyFocus: [
+          "Manage registrations & delegate comms",
+          "Facilitate delegate requirements during event",
+          "Ensure delegate safety"
+        ],
+        duties: [
+          "Prepare delegates servicing requirement list and timeline.",
+          "Prepare and send out delegate mails & communication.",
+          "Develop & design any required surveys.",
+          "Synergize with MKT VPs to create delegate attraction campaigns.",
+          "Manage delegate registrations.",
+          "Facilitate delegate requirements during the event.",
+          "Manage all issues and conflicts regarding delegates.",
+          "Ensure the safety of delegates."
+        ],
+        kpis: [
+          "# of complaints from delegates",
+          "# of positive feedbacks from delegation",
+          "# of delegate registrations",
+          "Seamless process"
+        ],
+        outcomes: [
+          "Event management & coordination",
+          "Tools and trackers",
+          "Creative approach & strategic planning",
+          "Working under pressure",
+          "People handling & conflict management"
+        ]
+      },
+      {
+        id: "events",
+        category: "events",
+        title: "OCVP — Events",
+        openings: "2 Positions",
+        keyFocus: [
+          "Develop event concepts, structures and participant journeys",
+          "Track event quality, engagement and delivery"
+        ],
+        duties: [
+          "Research, design, and propose event concepts aligned with event objectives.",
+          "Develop event structures, agendas, session flows, and delegate experiences.",
+          "Conduct feasibility assessments and risk analyses.",
+          "Prepare detailed event implementation plans and timelines.",
+          "In-kind Sponsors Raising and Management.",
+          "Arrange all awards and support smooth flow of nominee announcements on event day.",
+          "Track event quality, engagement, and post-event evaluations."
+        ],
+        kpis: [
+          "Participant satisfaction rate",
+          "Event attendance and retention rate",
+          "Smooth flow of events in the agenda",
+          "Proper ornamentation"
+        ],
+        outcomes: [
+          "Event planning and coordination",
+          "Creative idea generation",
+          "Project management & timeline tracking",
+          "Budgeting and resource planning"
+        ]
+      },
+      {
+        id: "logistics",
+        category: "logistics",
+        title: "OCVP — Logistics",
+        openings: "3 Positions",
+        keyFocus: [
+          "On-ground technical operations",
+          "Innovate logistics under pressure"
+        ],
+        duties: [
+          "Responsible for all logistic requirements before and within Project.",
+          "Responsible for in-project event management & Awards related logistics.",
+          "Innovative approach in logistic supply and management.",
+          "Printing and supplying merchandise.",
+          "Venue management and technical operations.",
+          "Presenting updates at virtual and physical meetings."
+        ],
+        kpis: [
+          "Zero complaints on logistic management",
+          "Awards for affordable prices",
+          "Feedback from delegates"
+        ],
+        outcomes: [
+          "Event organizing and promotion",
+          "Inventory management skills",
+          "Flexibility & adaptability"
+        ]
+      },
+      {
+        id: "marketing",
+        category: "marketing",
+        title: "OCVP — Marketing",
+        openings: "3 Positions",
+        keyFocus: [
+          "Plan event marketing timeline",
+          "Create digital materials & tools",
+          "Increase virtual outreach"
+        ],
+        duties: [
+          "Plan event marketing timeline and digital strategy.",
+          "Create digital promotional materials & tools.",
+          "Increase virtual outreach and social media campaigns.",
+          "Smooth transitions & marketing table handling.",
+          "Showcase digital impact across platforms.",
+          "Ensure zero branding violations."
+        ],
+        kpis: [
+          "Proper promotion plan",
+          "Smooth transitions and marketing table handling",
+          "Good delegate involvement in online campaign",
+          "# impact showcased through digital platforms",
+          "# branding violations minimization",
+          "# of delegate registrations"
+        ],
+        outcomes: [
+          "Marketing and content creation exposure",
+          "Event organizing and promotion",
+          "Campaign strategy development",
+          "Analytics and measurement skills"
+        ]
+      }
+    ];
+
+    // ---- RENDER ROLES GRID ----
+    const rolesGrid = document.getElementById('rolesGrid');
+
+    function renderRoles(filterCategory = 'all') {
+      rolesGrid.innerHTML = '';
+      const filtered = filterCategory === 'all' ? legacyRoles : legacyRoles.filter(r => r.category === filterCategory);
+
+      filtered.forEach(role => {
+        const card = document.createElement('div');
+        card.className = `role-card ${role.id === 'ocp' ? 'ocp-card' : ''}`;
+
+        card.innerHTML = `
+          <div>
+            <div class="rc-header">
+              <span class="rc-badge">LEGACY '26</span>
+              <span class="rc-openings">${role.openings}</span>
+            </div>
+            <div class="rc-title">${role.title}</div>
+            <div class="rc-focus"><strong>Key Focus:</strong> ${role.keyFocus.join(' • ')}</div>
+          </div>
+          <button class="rc-btn" onclick="openRoleModal('${role.id}')">View Full JD & Apply ➔</button>
+        `;
+        rolesGrid.appendChild(card);
+      });
+    }
+
+    renderRoles();
+
+    // Filter bar click logic
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderRoles(btn.dataset.filter);
+        playSound(650, 0.06);
+      });
+    });
+
+    // ---- ROLE MODAL DRAWER LOGIC ----
+    const overlay = document.getElementById('modalOverlay');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalOpenings = document.getElementById('modalOpenings');
+    const modalFocus = document.getElementById('modalFocus');
+    const modalDuties = document.getElementById('modalDuties');
+    const modalKpis = document.getElementById('modalKpis');
+    const modalOutcomes = document.getElementById('modalOutcomes');
+    const modalApplyBtn = document.getElementById('modalApplyBtn');
+
+    function openRoleModal(id) {
+      const r = legacyRoles.find(item => item.id === id);
+      if (!r) return;
+      modalTitle.textContent = r.title;
+      modalOpenings.textContent = r.openings;
+      modalFocus.innerHTML = r.keyFocus.map(f => `<li>${f}</li>`).join('');
+      modalDuties.innerHTML = r.duties.map(d => `<li>${d}</li>`).join('');
+      modalKpis.innerHTML = r.kpis.map(k => `<li>${k}</li>`).join('');
+      modalOutcomes.innerHTML = r.outcomes.map(o => `<span class="chip">${o}</span>`).join('');
+      modalApplyBtn.onclick = () => window.open(GOOGLE_FORM_URL, '_blank');
+
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      playSound(850, 0.1);
+    }
+
+    document.getElementById('modalClose').onclick = () => {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+
+    // ---- QUIZ MODAL LOGIC ----
+    const quizOverlay = document.getElementById('quizOverlay');
+    document.getElementById('openQuizBtn').onclick = () => {
+      document.getElementById('qStep1').style.display = 'block';
+      document.getElementById('qResult').style.display = 'none';
+      quizOverlay.classList.add('open');
+      playSound(750, 0.08);
+    };
+    document.getElementById('quizClose').onclick = () => {
+      quizOverlay.classList.remove('open');
+    };
+
+    function answerQuiz(roleTitle) {
+      document.getElementById('qStep1').style.display = 'none';
+      document.getElementById('qResult').style.display = 'block';
+      document.getElementById('quizResultRole').textContent = roleTitle;
+      document.getElementById('quizApplyBtn').onclick = () => window.open(GOOGLE_FORM_URL, '_blank');
+      playSound(1100, 0.15);
+    }
+
+    // ---- COUNTDOWN ----
+    function updateCountdown() {
+      const deadline = new Date("2026-10-25T23:59:59").getTime();
+      const now = new Date().getTime();
+      const diff = deadline - now;
+      if (diff > 0) {
+        document.getElementById('cdDays').textContent = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        document.getElementById('cdHours').textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        document.getElementById('cdMins').textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        document.getElementById('cdSecs').textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // ---- SPOTLIGHT & GOLDEN CURSOR TRAIL ----
+    const spotlight = document.getElementById('spotlight');
+    const follower = document.getElementById('cursorFollower');
+    const dot = document.getElementById('cursorDot');
+    const trailCanvas = document.getElementById('cursorTrailCanvas');
+    const tCtx = trailCanvas ? trailCanvas.getContext('2d') : null;
+
+    let mX = -100, mY = -100, fX = -100, fY = -100;
+    let trailHistory = [];
+    const MAX_TRAIL = 22;
+
+    function resizeTrailCanvas() {
+      if (trailCanvas) {
+        trailCanvas.width = window.innerWidth;
+        trailCanvas.height = window.innerHeight;
+      }
+    }
+    window.addEventListener('resize', resizeTrailCanvas);
+    resizeTrailCanvas();
+
+    document.addEventListener('mousemove', (e) => {
+      mX = e.clientX;
+      mY = e.clientY;
+      if (dot) {
+        dot.style.left = `${mX}px`;
+        dot.style.top = `${mY}px`;
+      }
+      if (spotlight) {
+        spotlight.style.left = `${mX}px`;
+        spotlight.style.top = `${mY}px`;
+      }
+
+      // Add to trail history
+      trailHistory.unshift({ x: mX, y: mY, life: 1 });
+      if (trailHistory.length > MAX_TRAIL) trailHistory.pop();
+    });
+
+    function drawGoldenTrail() {
+      if (!tCtx || trailHistory.length < 2) return;
+      tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+
+      // Draw glowing gold ribbon line
+      tCtx.beginPath();
+      tCtx.moveTo(trailHistory[0].x, trailHistory[0].y);
+
+      for (let i = 1; i < trailHistory.length - 1; i++) {
+        const xc = (trailHistory[i].x + trailHistory[i + 1].x) / 2;
+        const yc = (trailHistory[i].y + trailHistory[i + 1].y) / 2;
+        tCtx.quadraticCurveTo(trailHistory[i].x, trailHistory[i].y, xc, yc);
+      }
+
+      tCtx.strokeStyle = '#FFD700';
+      tCtx.lineWidth = 3.5;
+      tCtx.lineCap = 'round';
+      tCtx.lineJoin = 'round';
+      tCtx.shadowColor = '#FFD700';
+      tCtx.shadowBlur = 18;
+      tCtx.stroke();
+
+      // Secondary glowing inner core
+      tCtx.beginPath();
+      tCtx.moveTo(trailHistory[0].x, trailHistory[0].y);
+      for (let i = 1; i < trailHistory.length - 1; i++) {
+        const xc = (trailHistory[i].x + trailHistory[i + 1].x) / 2;
+        const yc = (trailHistory[i].y + trailHistory[i + 1].y) / 2;
+        tCtx.quadraticCurveTo(trailHistory[i].x, trailHistory[i].y, xc, yc);
+      }
+      tCtx.strokeStyle = '#FFFDF0';
+      tCtx.lineWidth = 1.2;
+      tCtx.shadowBlur = 6;
+      tCtx.stroke();
+
+      // Fade out trailing points slowly when cursor stops
+      for (let i = 0; i < trailHistory.length; i++) {
+        trailHistory[i].life -= 0.03;
+      }
+      trailHistory = trailHistory.filter(p => p.life > 0);
+    }
+
+    function loopCursor() {
+      fX += (mX - fX) * 0.14;
+      fY += (mY - fY) * 0.14;
+      if (follower) {
+        follower.style.left = `${fX}px`;
+        follower.style.top = `${fY}px`;
+      }
+      drawGoldenTrail();
+      requestAnimationFrame(loopCursor);
+    }
+    loopCursor();
+
+    // ---- SOUND SYNTHESIZER ----
+    let soundOn = true;
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    document.getElementById('soundToggle').onclick = () => {
+      soundOn = !soundOn;
+      document.getElementById('soundToggle').textContent = soundOn ? '🔊' : '🔇';
+    };
+
+    function playSound(freq, duration) {
+      if (!soundOn) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch(e){}
+    }
+
+    // ---- CYBER GLOW MODE TOGGLE ----
+    let isCyber = false;
+    document.getElementById('cyberToggle').onclick = () => {
+      isCyber = !isCyber;
+      document.body.classList.toggle('cyber-mode', isCyber);
+      playSound(isCyber ? 1250 : 450, 0.12);
+    };
+
+    // ---- 3D TROPHY CARD TILT ----
+    const trophyCard = document.getElementById('trophyCard');
+    if (trophyCard) {
+      document.addEventListener('mousemove', (e) => {
+        const rect = trophyCard.getBoundingClientRect();
+        const x = e.clientX - (rect.left + rect.width / 2);
+        const y = e.clientY - (rect.top + rect.height / 2);
+        trophyCard.style.transform = `rotateY(${x * 0.06}deg) rotateX(${-y * 0.06}deg)`;
+      });
+    }
+
+    // ---- CANVAS STARFALL ENGINE ----
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Star {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.vy = Math.random() * 0.4 + 0.1;
+        this.alpha = Math.random();
+      }
+      update() {
+        this.y += this.vy;
+        if (this.y > canvas.height) this.y = 0;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 215, 0, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 70; i++) stars.push(new Star());
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => { s.update(); s.draw(); });
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+
+    // ---- CURTAIN ANIMATION ----
+    gsap.to('#curtainLogo', { scale: 1.1, duration: 1 });
+    gsap.to('#introCurtain', { opacity: 0, duration: 0.8, delay: 0.8, onComplete: () => {
+      document.getElementById('introCurtain').style.display = 'none';
+    }});
+
+    // ---- NAV SCROLL STATE ----
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ---- GSAP SCROLLTRIGGER: MIND-BENDING SCROLL ANIMATIONS ----
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Generic reveal-up elements
+    gsap.utils.toArray('.reveal-up').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 70 },
+        { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
+          delay: i * 0.05
+        }
+      );
+    });
+
+    // Reveal-left (from left)
+    gsap.utils.toArray('.reveal-left').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, x: -80 },
+        { opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    // Reveal-right (from right)
+    gsap.utils.toArray('.reveal-right').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, x: 80 },
+        { opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    // Reveal-scale (scale up)
+    gsap.utils.toArray('.reveal-scale').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.6)',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    // Stagger about-cards
+    gsap.fromTo('.about-card',
+      { opacity: 0, y: 60, rotateX: 15 },
+      { opacity: 1, y: 0, rotateX: 0, duration: 0.8, stagger: 0.18, ease: 'power3.out',
+        scrollTrigger: { trigger: '.about-grid', start: 'top 80%', toggleActions: 'play none none none' }
+      }
+    );
+
+    // Stagger em-cards from bottom
+    gsap.fromTo('.em-card',
+      { opacity: 0, y: 80, scale: 0.9 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.85, stagger: 0.2, ease: 'power3.out',
+        scrollTrigger: { trigger: '.em-grid', start: 'top 80%', toggleActions: 'play none none none' }
+      }
+    );
+
+    // Stagger role-cards with alternating direction
+    ScrollTrigger.create({
+      trigger: '#rolesGrid',
+      start: 'top 85%',
+      onEnter: () => {
+        gsap.fromTo('.role-card',
+          { opacity: 0, y: 60 },
+          { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power2.out' }
+        );
+      }
+    });
+
+    // Hero headline dramatic split-word reveal on load
+    gsap.from('.hero-headline', { opacity: 0, y: 50, duration: 1.2, delay: 1.2, ease: 'expo.out' });
+    gsap.from('.hero-desc', { opacity: 0, y: 30, duration: 1, delay: 1.5, ease: 'power3.out' });
+    gsap.from('.hero-ctas', { opacity: 0, y: 30, duration: 0.9, delay: 1.7, ease: 'power3.out' });
+    gsap.from('.gala-countdown', { opacity: 0, y: 30, duration: 0.9, delay: 1.9, ease: 'power3.out' });
+    gsap.from('.trophy-card-3d', { opacity: 0, scale: 0.75, rotateY: -25, duration: 1.4, delay: 1.4, ease: 'back.out(1.4)' });
+
+    // Parallax on hero visual
+    gsap.to('.trophy-card-3d', {
+      yPercent: -12,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    // Section heading pin-zoom
+    ['#about', '#leadership', '#timeline', '#roles'].forEach(sec => {
+      gsap.fromTo(`${sec} .section-title`,
+        { opacity: 0, scale: 0.88, y: 40 },
+        { opacity: 1, scale: 1, y: 0, duration: 1, ease: 'expo.out',
+          scrollTrigger: { trigger: sec, start: 'top 82%', toggleActions: 'play none none none' }
+        }
+      );
+      gsap.fromTo(`${sec} .section-sub`,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, delay: 0.25, ease: 'power3.out',
+          scrollTrigger: { trigger: sec, start: 'top 82%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    // ---- HEX TIMELINE INTERSECTION OBSERVER ----
+    const tlItems = document.querySelectorAll('.tl-item');
+    const tlRailFill = document.getElementById('tlRailFill');
+    const tlSection = document.getElementById('timeline');
+
+    const tlObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Animate rail fill
+          tlRailFill.style.width = '100%';
+
+          // Stagger reveal each item
+          tlItems.forEach((item, idx) => {
+            setTimeout(() => {
+              item.classList.add('visible');
+            }, parseInt(item.dataset.delay || 0));
+          });
+
+          // Progressive activate each node
+          tlItems.forEach((item, idx) => {
+            setTimeout(() => {
+              tlItems.forEach(i => i.classList.remove('active-step'));
+              item.classList.add('active-step');
+            }, parseInt(item.dataset.delay || 0) + 400);
+          });
+
+          // Stop after all done
+          setTimeout(() => {
+            tlItems.forEach(i => i.classList.remove('active-step'));
+            tlItems[0].classList.add('active-step');
+          }, (tlItems.length) * 200 + 1200);
+
+          tlObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (tlSection) tlObserver.observe(tlSection);
+
+    // ============================================================
+    // ★★★  MIND-BENDING SCROLL ENGINE  ★★★
+    // ============================================================
+
+    // 1. LENIS — buttery smooth scroll synced with GSAP ScrollTrigger
+    const lenis = new Lenis({
+      lerp: 0.08,
+      smoothWheel: true,
+      syncTouch: false,
+    });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    // 2. SCROLL-VELOCITY BODY SKEW
+    // The whole page subtly skews in the direction of scroll speed — very cinematic
+    let lastScrollY = 0, ticking = false, currentSkew = 0;
+    const MAX_SKEW = 4; // degrees
+    lenis.on('scroll', ({ velocity }) => {
+      const targetSkew = Math.max(-MAX_SKEW, Math.min(MAX_SKEW, velocity * -0.5));
+      currentSkew += (targetSkew - currentSkew) * 0.15;
+      document.querySelectorAll('.velocity-skew').forEach(el => {
+        el.style.transform = `skewY(${currentSkew}deg)`;
+      });
+      // Reverse marquee speed on fast scroll
+      const track = document.getElementById('marqueeTrack');
+      if (track) {
+        const speed = Math.abs(velocity) > 2 ? 8 : 22;
+        track.style.animationDuration = speed + 's';
+      }
+    });
+
+    // 3. CHAR-BY-CHAR SPLIT TEXT REVEAL
+    // Wraps each character of section titles in a span and reveals on scroll
+    function splitAndReveal(selector) {
+      document.querySelectorAll(selector).forEach(el => {
+        const text = el.textContent;
+        el.innerHTML = [...text].map((ch, i) =>
+          ch === ' '
+            ? '<span style="display:inline-block;width:.3em"> </span>'
+            : `<span class="char" style="transition-delay:${i * 28}ms"><span class="char-inner">${ch}</span></span>`
+        ).join('');
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 85%',
+          onEnter: () => el.querySelectorAll('.char').forEach(c => c.classList.add('revealed')),
+          once: true,
+        });
+      });
+    }
+    splitAndReveal('.section-title');
+
+    // 4. ROLES GRID CENTERED ANIMATION
+    const rolesSection = document.getElementById('roles');
+    const rolesGrid = document.getElementById('rolesGrid');
+    if (rolesGrid) {
+      rolesGrid.style.display = 'flex';
+      rolesGrid.style.flexWrap = 'wrap';
+      rolesGrid.style.justifyContent = 'center';
+      rolesGrid.style.alignItems = 'stretch';
+      rolesGrid.style.gap = '28px';
+      rolesGrid.style.width = '100%';
+    }
+
+    // 5. 3D PERSPECTIVE WARP — About cards tilt as you scroll through them
+    gsap.utils.toArray('.about-card').forEach((card, i) => {
+      gsap.fromTo(card,
+        { rotateY: i % 2 === 0 ? -18 : 18, rotateX: 10, opacity: 0, scale: 0.88 },
+        {
+          rotateY: 0, rotateX: 0, opacity: 1, scale: 1,
+          duration: 1.1, ease: 'expo.out',
+          scrollTrigger: { trigger: card, start: 'top 85%', once: true }
+        }
+      );
+    });
+
+    // 6. PINNED HERO TEXT — hero headline pins briefly and zooms out as you scroll away
+    gsap.to('.hero-headline', {
+      scale: 0.7,
+      opacity: 0,
+      ease: 'power2.in',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'center top',
+        end: 'bottom top',
+        scrub: 0.8,
+      }
+    });
+
+    // 7. MAGNETIC BUTTONS — buttons follow cursor within a radius
+    document.querySelectorAll('.cta-btn, .filter-btn, .rc-btn').forEach(btn => {
+      btn.classList.add('btn-magnetic');
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) * 0.28;
+        const dy = (e.clientY - cy) * 0.28;
+        gsap.to(btn, { x: dx, y: dy, duration: 0.35, ease: 'power2.out' });
+      });
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+      });
+    });
+
+    // 8. GOLD PARTICLE BURST — triggers a burst of gold particles at scroll milestones
+    function spawnBurst(x, y, count = 18) {
+      for (let i = 0; i < count; i++) {
+        const dot = document.createElement('div');
+        const angle = (i / count) * 360;
+        const dist = 60 + Math.random() * 80;
+        dot.style.cssText = `
+          position:fixed; left:${x}px; top:${y}px;
+          width:${3 + Math.random() * 4}px; height:${3 + Math.random() * 4}px;
+          background:${Math.random() > 0.5 ? '#FFD700' : '#D4AF37'};
+          border-radius:50%; pointer-events:none; z-index:9999;
+          transform:translate(-50%,-50%);
+        `;
+        document.body.appendChild(dot);
+        gsap.to(dot, {
+          x: Math.cos(angle * Math.PI / 180) * dist,
+          y: Math.sin(angle * Math.PI / 180) * dist - 40,
+          opacity: 0,
+          scale: 0,
+          duration: 0.9 + Math.random() * 0.5,
+          ease: 'power3.out',
+          onComplete: () => dot.remove(),
+        });
+      }
+    }
+
+    // Fire bursts when entering key sections
+    ['#about', '#timeline', '#roles'].forEach(sec => {
+      ScrollTrigger.create({
+        trigger: sec,
+        start: 'top 70%',
+        once: true,
+        onEnter: () => {
+          const el = document.querySelector(sec);
+          if (!el) return;
+          const r = el.getBoundingClientRect();
+          spawnBurst(window.innerWidth / 2, r.top + 80, 22);
+        }
+      });
+    });
+
+    // 9. EM CARDS — 3D flip-in stagger from alternating sides
+    gsap.utils.toArray('.em-card').forEach((card, i) => {
+      gsap.fromTo(card,
+        { rotateX: -30, opacity: 0, y: 60 },
+        {
+          rotateX: 0, opacity: 1, y: 0,
+          duration: 1, ease: 'expo.out', delay: i * 0.15,
+          scrollTrigger: { trigger: '.em-grid', start: 'top 80%', once: true }
+        }
+      );
+    });
+
+    // 10. SECTION BACKGROUND PARALLAX — different bg speeds for depth
+    gsap.utils.toArray('.section').forEach(sec => {
+      gsap.fromTo(sec,
+        { backgroundPositionY: '0%' },
+        {
+          backgroundPositionY: '30%',
+          ease: 'none',
+          scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true }
+        }
+      );
+    });
+
+    // 11. Add velocity-skew class to main content wrapper for the body-skew effect
+    document.querySelectorAll('.section, .timeline-section, .marquee-wrap').forEach(el => {
+      el.classList.add('velocity-skew');
+    });
+
+  </script>
+</body>
+</html>
