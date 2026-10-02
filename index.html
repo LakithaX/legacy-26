@@ -197,6 +197,13 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
+    animation: curtainFadeOut 0.8s cubic-bezier(0.77, 0, 0.175, 1) 1.2s forwards;
+    pointer-events: none;
+  }
+  @keyframes curtainFadeOut {
+    0% { opacity: 1; visibility: visible; }
+    99% { opacity: 0; visibility: visible; }
+    100% { opacity: 0; visibility: hidden; display: none; }
   }
   .curtain-logo {
     width: 140px;
@@ -2218,15 +2225,24 @@
 
     // ---- SOUND SYNTHESIZER ----
     let soundOn = true;
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    document.getElementById('soundToggle').onclick = () => {
-      soundOn = !soundOn;
-      document.getElementById('soundToggle').textContent = soundOn ? '🔊' : '🔇';
-    };
+    let audioCtx = null;
+    const soundBtn = document.getElementById('soundToggle');
+    if (soundBtn) {
+      soundBtn.onclick = () => {
+        soundOn = !soundOn;
+        soundBtn.textContent = soundOn ? '🔊' : '🔇';
+      };
+    }
 
     function playSound(freq, duration) {
       if (!soundOn) return;
       try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
@@ -2241,11 +2257,14 @@
 
     // ---- CYBER GLOW MODE TOGGLE ----
     let isCyber = false;
-    document.getElementById('cyberToggle').onclick = () => {
-      isCyber = !isCyber;
-      document.body.classList.toggle('cyber-mode', isCyber);
-      playSound(isCyber ? 1250 : 450, 0.12);
-    };
+    const cyberBtn = document.getElementById('cyberToggle');
+    if (cyberBtn) {
+      cyberBtn.onclick = () => {
+        isCyber = !isCyber;
+        document.body.classList.toggle('cyber-mode', isCyber);
+        playSound(isCyber ? 1250 : 450, 0.12);
+      };
+    }
 
     // ---- 3D TROPHY CARD TILT ----
     const trophyCard = document.getElementById('trophyCard');
@@ -2260,50 +2279,60 @@
 
     // ---- CANVAS STARFALL ENGINE ----
     const canvas = document.getElementById('starfield');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let stars = [];
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    class Star {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.vy = Math.random() * 0.4 + 0.1;
-        this.alpha = Math.random();
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
       }
-      update() {
-        this.y += this.vy;
-        if (this.y > canvas.height) this.y = 0;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 215, 0, ${this.alpha})`;
-        ctx.fill();
-      }
-    }
+      window.addEventListener('resize', resize);
+      resize();
 
-    for (let i = 0; i < 70; i++) stars.push(new Star());
+      class Star {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 2 + 0.5;
+          this.vy = Math.random() * 0.4 + 0.1;
+          this.alpha = Math.random();
+        }
+        update() {
+          this.y += this.vy;
+          if (this.y > canvas.height) this.y = 0;
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 215, 0, ${this.alpha})`;
+          ctx.fill();
+        }
+      }
 
-    function animateStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach(s => { s.update(); s.draw(); });
-      requestAnimationFrame(animateStars);
+      for (let i = 0; i < 70; i++) stars.push(new Star());
+
+      function animateStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        stars.forEach(s => { s.update(); s.draw(); });
+        requestAnimationFrame(animateStars);
+      }
+      animateStars();
     }
-    animateStars();
 
     // ---- CURTAIN ANIMATION ----
-    gsap.to('#curtainLogo', { scale: 1.1, duration: 1 });
-    gsap.to('#introCurtain', { opacity: 0, duration: 0.8, delay: 0.8, onComplete: () => {
-      document.getElementById('introCurtain').style.display = 'none';
-    }});
+    if (typeof gsap !== 'undefined') {
+      gsap.to('.curtain-logo', { scale: 1.1, duration: 1 });
+      gsap.to('#introCurtain', { opacity: 0, duration: 0.8, delay: 0.8, onComplete: () => {
+        const curtain = document.getElementById('introCurtain');
+        if (curtain) curtain.style.display = 'none';
+      }});
+    } else {
+      setTimeout(() => {
+        const curtain = document.getElementById('introCurtain');
+        if (curtain) curtain.style.display = 'none';
+      }, 1200);
+    }
 
     // ---- NAV SCROLL STATE ----
     window.addEventListener('scroll', () => {
