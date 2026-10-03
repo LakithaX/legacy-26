@@ -1636,6 +1636,11 @@
 
   /* ---- Timeline: uniform nodes (no enlarged first step, no stray rings) ---- */
   .tl-node::before { display: none !important; }
+  /* Solid node fill so the rail never shows through the circles */
+  .tl-node { background: #0a0a0e; }
+  .tl-item.active-step .tl-node {
+    background: linear-gradient(rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.08)), #0a0a0e;
+  }
   .tl-item:hover .tl-node,
   .tl-item.active-step .tl-node { transform: none; }
   .tl-item:hover .tl-node {
@@ -1863,7 +1868,7 @@
 
         <!-- Dinadi Jayathilake -->
         <div class="em-card">
-          <img src="Images/em_1.jpg" alt="Dinadi Jayathilake" class="em-img">
+          <img src="Images/Dinadi_Jayathilake.png" alt="Dinadi Jayathilake" class="em-img">
           <div class="em-name">Dinadi Jayathilake</div>
           <div class="em-role">Event Manager</div>
           <div class="em-contact">
