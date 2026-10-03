@@ -1537,6 +1537,110 @@
   .velocity-skew {
     will-change: transform;
   }
+
+  /* =====================================================
+     NAV + BACKGROUND REFRESH
+     ===================================================== */
+  section[id] { scroll-margin-top: 96px; }
+
+  /* ---- Floating glass pill nav ---- */
+  .nav {
+    top: 16px;
+    padding: 0 20px;
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
+    pointer-events: none;
+  }
+  .nav.scrolled {
+    top: 10px;
+    padding: 0 20px;
+    background: transparent;
+    box-shadow: none;
+  }
+  .nav .container {
+    pointer-events: auto;
+    max-width: 1180px;
+    padding: 10px 12px 10px 22px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(180deg, rgba(26, 26, 34, 0.7), rgba(12, 12, 18, 0.62));
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+  }
+  .nav.scrolled .container {
+    padding: 8px 10px 8px 20px;
+    background: rgba(9, 9, 13, 0.88);
+    border-color: rgba(212, 175, 55, 0.38);
+    box-shadow: 0 14px 44px rgba(0, 0, 0, 0.7), 0 0 28px rgba(212, 175, 55, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  .nav-brand img { height: 36px; }
+  .nav-brand-text { font-size: 17px; letter-spacing: 0.18em; }
+
+  .nav-links {
+    background: transparent;
+    border: none;
+    padding: 0;
+    gap: 2px;
+    backdrop-filter: none;
+  }
+  .nav-links a {
+    position: relative;
+    padding: 9px 18px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--text-sub);
+    text-decoration: none;
+    background: transparent;
+    box-shadow: none;
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%; bottom: 3px;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold-400);
+    box-shadow: 0 0 8px var(--gold-glow);
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.3s ease;
+  }
+  .nav-links a:hover {
+    color: var(--gold-300);
+    background: rgba(255, 215, 0, 0.06);
+    box-shadow: none;
+  }
+  .nav-links a.active {
+    color: var(--gold-300);
+    background: rgba(255, 215, 0, 0.1);
+    box-shadow: none;
+  }
+  .nav-links a.active::after { transform: translateX(-50%) scale(1); }
+
+  .nav .btn-gold {
+    padding: 11px 24px;
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  /* ---- Timeline: uniform nodes (no enlarged first step, no stray rings) ---- */
+  .tl-node::before { display: none !important; }
+  .tl-item:hover .tl-node,
+  .tl-item.active-step .tl-node { transform: none; }
+  .tl-item:hover .tl-node {
+    border-color: var(--gold-400);
+    box-shadow: 0 0 24px rgba(212, 175, 55, 0.35);
+  }
+
+  @media (max-width: 860px) {
+    .nav, .nav.scrolled { padding: 0 12px; }
+    .nav .container { padding: 8px 10px 8px 16px; }
+    .nav-brand-text { font-size: 15px; }
+  }
+
 </style>
 </head>
 
@@ -2656,10 +2760,9 @@
             }, parseInt(item.dataset.delay || 0) + 400);
           });
 
-          // Stop after all done
+          // When the sequence finishes, light every step equally
           setTimeout(() => {
-            tlItems.forEach(i => i.classList.remove('active-step'));
-            tlItems[0].classList.add('active-step');
+            tlItems.forEach(i => i.classList.add('active-step'));
           }, (tlItems.length) * 200 + 1200);
 
           tlObserver.unobserve(entry.target);
@@ -2715,6 +2818,26 @@
       _rolesGridEl.style.gap = '28px';
       _rolesGridEl.style.width = '100%';
     }
+
+    // 5. NAV ACTIVE LINK FOLLOWS SCROLL POSITION
+    (function () {
+      const links = document.querySelectorAll('.nav-links a');
+      const map = {};
+      links.forEach(a => { map[a.getAttribute('href').slice(1)] = a; });
+      const ids = Object.keys(map);
+      function setActive() {
+        const y = window.scrollY + window.innerHeight * 0.35;
+        let current = ids[0];
+        ids.forEach(id => {
+          const el = document.getElementById(id);
+          if (el && el.offsetTop <= y) current = id;
+        });
+        links.forEach(a => a.classList.remove('active'));
+        if (map[current]) map[current].classList.add('active');
+      }
+      window.addEventListener('scroll', setActive, { passive: true });
+      setActive();
+    })();
 
   </script>
 </body>
