@@ -397,29 +397,6 @@
     flex-wrap: wrap;
     margin-bottom: 44px;
   }
-  .btn-outline-gold {
-    background: rgba(18, 18, 24, 0.8);
-    border: 2px solid var(--gold-500);
-    color: var(--gold-300);
-    font-family: var(--ff-body);
-    font-weight: 800;
-    font-size: 13.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 13px 28px;
-    border-radius: var(--radius-full);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .btn-outline-gold:hover {
-    background: var(--gold-400);
-    color: #000;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px var(--gold-glow);
-  }
 
   /* Countdown Widget */
   .gala-countdown {
@@ -1094,28 +1071,6 @@
     background: linear-gradient(135deg, #FFF0B3 0%, #FFD700 100%);
   }
 
-  /* ---------- QUIZ STEP MODAL ---------- */
-  .quiz-option {
-    background: rgba(18, 18, 24, 0.9);
-    border: 1px solid var(--border-line);
-    padding: 18px 24px;
-    border-radius: var(--radius-md);
-    margin-bottom: 14px;
-    font-weight: 700;
-    font-size: 15.5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .quiz-option:hover {
-    border-color: var(--gold-400);
-    background: rgba(255, 215, 0, 0.15);
-    transform: translateX(8px);
-    box-shadow: 0 0 20px var(--gold-glow);
-  }
-
   /* ---------- TIMELINE SECTION — Premium Numbered Design ---------- */
   .timeline-section {
     padding: 100px 0 110px;
@@ -1698,7 +1653,6 @@
           <p class="hero-desc">Join the Organizing Committee of the most prestigious Annual Awards Night of AIESEC in SLIIT. Lead execution, craft unforgettable moments, and leave your legacy.</p>
 
           <div class="hero-ctas">
-            <button class="btn-outline-gold" id="openQuizBtn">✨ Role Match Quiz</button>
             <a href="#roles" class="btn-gold">Explore All Openings</a>
           </div>
 
@@ -2048,33 +2002,6 @@
     </div>
   </div>
 
-  <!-- Quiz Modal -->
-  <div class="modal-overlay" id="quizOverlay">
-    <div class="modal-box" style="max-width: 560px;">
-      <button class="modal-close" id="quizClose">✕</button>
-
-      <div class="quiz-step active" id="qStep1">
-        <h2 class="modal-title" style="font-size: 24px;">What is your primary passion?</h2>
-        <p style="color: var(--text-sub); margin-bottom: 24px;">Select what excites you most about Legacy '26:</p>
-        <div class="quiz-option" onclick="answerQuiz('Organizing Committee President (OCP)')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">OCP</strong> Leading the entire team & event vision</span> <span>➔</span></div>
-        <div class="quiz-option" onclick="answerQuiz('OCVP — Finance')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">FINANCE</strong> Budget execution & cash flow management</span> <span>➔</span></div>
-        <div class="quiz-option" onclick="answerQuiz('OCVP — Partnership Development')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">PD</strong> Corporate sponsorships & MOUs</span> <span>➔</span></div>
-        <div class="quiz-option" onclick="answerQuiz('OCVP — Delegate Experience')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">DELEGATE</strong> Delegate servicing & registrations</span> <span>➔</span></div>
-        <div class="quiz-option" onclick="answerQuiz('OCVP — Events')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">EVENTS</strong> Awards flow, nominee announcements & agenda</span> <span>➔</span></div>
-        <div class="quiz-option" onclick="answerQuiz('OCVP — Logistics')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">LOGISTICS</strong> Technical operations & venue management</span> <span>➔</span></div>
-        <div class="quiz-option" onclick="answerQuiz('OCVP — Marketing')"><span><strong style="color:var(--gold-400); margin-right:10px; font-size:12px; letter-spacing:0.1em; border:1px solid var(--border-line); padding:2px 8px; border-radius:12px; background:rgba(255,215,0,0.08);">MARKETING</strong> Creative campaigns & digital impact</span> <span>➔</span></div>
-      </div>
-
-      <div class="quiz-step" id="qResult" style="display: none; text-align: center; padding: 20px 0;">
-        <img src="Images/legacy_logo.png" alt="Legacy '26 Logo" style="width: 60px; height: auto; margin-bottom: 16px; filter: drop-shadow(0 0 16px var(--gold-glow));">
-        <h2 class="modal-title" style="font-size: 28px;">Your Legacy Role</h2>
-        <p style="color: var(--text-sub); margin-bottom: 20px;">Based on your selection, your perfect match is:</p>
-        <div id="quizResultRole" style="font-family: var(--ff-heading); font-size: 24px; font-weight: 700; color: var(--gold-400); margin-bottom: 28px;"></div>
-        <button class="modal-apply-btn" id="quizApplyBtn">Apply For This Role</button>
-      </div>
-    </div>
-  </div>
-
   <!-- Footer — Gala Edition -->
   <footer>
     <div class="footer-glow-top"></div>
@@ -2101,7 +2028,7 @@
 
   <!-- JavaScript Code -->
   <script>
-    // Single application form used by every Apply button (role modal + quiz result)
+    // Single application form used by every Apply button (role modal)
     const GOOGLE_FORM_URL = "https://forms.gle/V6KVAMdSkyNs6rAUA";
 
     // ---- LEGACY '26 ROLE DATA ----
@@ -2431,26 +2358,6 @@
       overlay.classList.remove('open');
       document.body.style.overflow = '';
     };
-
-    // ---- QUIZ MODAL LOGIC ----
-    const quizOverlay = document.getElementById('quizOverlay');
-    document.getElementById('openQuizBtn').onclick = () => {
-      document.getElementById('qStep1').style.display = 'block';
-      document.getElementById('qResult').style.display = 'none';
-      quizOverlay.classList.add('open');
-      playSound(750, 0.08);
-    };
-    document.getElementById('quizClose').onclick = () => {
-      quizOverlay.classList.remove('open');
-    };
-
-    function answerQuiz(roleTitle) {
-      document.getElementById('qStep1').style.display = 'none';
-      document.getElementById('qResult').style.display = 'block';
-      document.getElementById('quizResultRole').textContent = roleTitle;
-      document.getElementById('quizApplyBtn').onclick = () => window.open(GOOGLE_FORM_URL, '_blank');
-      playSound(1100, 0.15);
-    }
 
     // ---- COUNTDOWN ----
     function updateCountdown() {
