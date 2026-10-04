@@ -397,6 +397,29 @@
     flex-wrap: wrap;
     margin-bottom: 44px;
   }
+  .btn-outline-gold {
+    background: rgba(18, 18, 24, 0.8);
+    border: 2px solid var(--gold-500);
+    color: var(--gold-300);
+    font-family: var(--ff-body);
+    font-weight: 800;
+    font-size: 13.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 13px 28px;
+    border-radius: var(--radius-full);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-outline-gold:hover {
+    background: var(--gold-400);
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px var(--gold-glow);
+  }
 
   /* Countdown Widget */
   .gala-countdown {
@@ -1071,6 +1094,28 @@
     background: linear-gradient(135deg, #FFF0B3 0%, #FFD700 100%);
   }
 
+  /* ---------- QUIZ STEP MODAL ---------- */
+  .quiz-option {
+    background: rgba(18, 18, 24, 0.9);
+    border: 1px solid var(--border-line);
+    padding: 18px 24px;
+    border-radius: var(--radius-md);
+    margin-bottom: 14px;
+    font-weight: 700;
+    font-size: 15.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .quiz-option:hover {
+    border-color: var(--gold-400);
+    background: rgba(255, 215, 0, 0.15);
+    transform: translateX(8px);
+    box-shadow: 0 0 20px var(--gold-glow);
+  }
+
   /* ---------- TIMELINE SECTION — Premium Numbered Design ---------- */
   .timeline-section {
     padding: 100px 0 110px;
@@ -1609,6 +1654,16 @@
     .nav-brand-text { font-size: 15px; }
   }
 
+
+  .tl-when {
+    font-family: var(--ff-heading);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gold-300);
+    letter-spacing: 0.04em;
+    margin: 2px 0 10px;
+    text-shadow: 0 0 14px rgba(255, 215, 0, 0.25);
+  }
 </style>
 </head>
 
@@ -1870,6 +1925,7 @@
             </div>
             <div class="tl-body">
               <div class="tl-date">Applications Open</div>
+              <div class="tl-when">4 October</div>
               <div class="tl-label">OC Applications<br>Launch</div>
               <div class="tl-desc">Submit your application and choose your preferred role</div>
             </div>
@@ -1888,6 +1944,7 @@
             </div>
             <div class="tl-body">
               <div class="tl-date">OCP Deadline</div>
+              <div class="tl-when">12 October</div>
               <div class="tl-label">President Role<br>Closes</div>
               <div class="tl-desc">Final deadline for OCP applications</div>
             </div>
@@ -1911,6 +1968,7 @@
             </div>
             <div class="tl-body">
               <div class="tl-date">OCVP Deadline</div>
+              <div class="tl-when">22 October</div>
               <div class="tl-label">All VP Roles<br>Close</div>
               <div class="tl-desc">Final deadline for all OCVP applications</div>
             </div>
@@ -2028,7 +2086,7 @@
 
   <!-- JavaScript Code -->
   <script>
-    // Single application form used by every Apply button (role modal)
+    // Single application form used by every Apply button (role modal + quiz result)
     const GOOGLE_FORM_URL = "https://forms.gle/V6KVAMdSkyNs6rAUA";
 
     // ---- LEGACY '26 ROLE DATA ----
@@ -2361,7 +2419,7 @@
 
     // ---- COUNTDOWN ----
     function updateCountdown() {
-      const deadline = new Date("2026-10-25T23:59:59").getTime();
+      const deadline = new Date("2026-10-22T23:59:59").getTime();
       const now = new Date().getTime();
       const diff = deadline - now;
       if (diff > 0) {
